@@ -742,7 +742,7 @@ class LatentDirichletAllocation(
         X = self._check_non_neg_array(
             X, reset_n_features=False, whom="LatentDirichletAllocation.transform"
         )
-        doc_topic_distr = self._unnormalized_transform(X)
+        doc_topic_distr = self._unnormalized_transform(X) - self.doc_topic_prior_
         doc_topic_distr /= doc_topic_distr.sum(axis=1)[:, np.newaxis]
         return doc_topic_distr
 
